@@ -1,4 +1,4 @@
-titanic1 <- titanic
+titanic1 <- titanic.csv
 summary(titanic1$Age)
 library(stringr)
 # Anrede extrahieren
