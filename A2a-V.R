@@ -11,51 +11,65 @@ rm(extract_deck)
 titanic = titanic_data_modifiziert
 rm(titanic_data_modifiziert)
 
-###############################
-# Noch unfertig:
+###############################################################################
 
-# Kategoriale Variablen:
-# Survived - Sex - Embarked (zwei fehlende Elemente) -
-# Anrede (ungeeignet, zu viele Merkmale) - Side - Deck (viele NAs)
+# Funktion zum Visualisieren:
 
-# Visualisieren der kategorialen Variablen:
 visualize_data = function(){
   par(mfrow = c(2, 2)) # Einstellung des Fensters
   
-  # Saeulendiagramme:
-  # Survived:
-  tab1 = as.numeric(table(titanic$Survived))
+  # Survived - Ueberleben der Passagiere:
+  tab = as.numeric(table(titanic$Survived))
   
-  barplot(tab1, names.arg = c("Tote", "Überlebende"),
-          ylim = c(0, max(tab1) + 100), main = "Überleben der Passagiere")
-  text(0.7, y = tab1[1] + 50, labels = as.character(tab1[1]), cex = 1.5)
-  text(1.9, y = tab1[2] + 40, labels = as.character(tab1[2]), cex = 1.5)
+  barplot(tab, names.arg = c("Tote", "Ueberlebende"),
+          ylim = c(0, max(tab) + 100), main = "Ueberleben der Passagiere",
+          col = rainbow(length(tab)))
   
-  # ...
+  # Absolute Zahl je Auspraegung:
+  for(i in seq(1, length(tab))){
+    text(0.7 + (i - 1) * 1.2, y = tab[i] + 50, labels = tab[i], cex = 1.5)
+  }
   
+  # Sex - Geschlecht der Passagiere:
+  tab = as.numeric(table(titanic$Sex))
   
-  # Kreisdiagramme:
-  ## Eines muss entfernt werden.
+  barplot(tab, names.arg = c("weiblich", "maennlich"),
+          ylim = c(0, max(tab) + 100), main = "Geschlecht der Passagiere",
+          col = rainbow(length(tab)))
   
-  pie(table(titanic$Survived), radius = 1) # Survived
-  pie(table(titanic$Sex), radius = 1) # Sex
-  pie(table(titanic$Embarked), radius = 1) # Embarked
-  pie(table(titanic$Side)) # Side
-  # pie(table(titanic$Deck)[-8]) # Deck
+  # Absolute Zahl je Auspraegung:
+  for(i in seq(1, length(tab))){
+    text(0.7 + (i - 1) * 1.2, y = tab[i] + 50, labels = tab[i], cex = 1.5)
+  }
+  
+  # Embarked - Zustiegshafen:
+  tab = as.numeric(table(titanic$Embarked)[-1])
+  tab = c(tab, nrow(titanic) - sum(tab))
+  
+  barplot(tab, ylim = c(0, max(tab) + 100), main = "Zustiegshafen",
+          names = c("Cherbourg", "Queenstown", "Southampton", "Unbekannt"),
+          col = rainbow(length(tab)))
+  
+  # Absolute Zahl je Auspraegung:
+  for(i in seq(1, length(tab))){
+    text(0.7 + (i - 1) * 1.2, y = tab[i] + 50, labels = tab[i], cex = 1.5)
+  }
+  
+  # Deck der Passagiere:
+  tab = as.numeric(table(titanic$Deck)[-8])
+  tab = c(tab, nrow(titanic) - sum(tab))
+  
+  barplot(tab, ylim = c(0, max(tab) + 100), main = "Deck der Passagiere",
+          names.arg = c("A", "B", "C", "D", "E", "F", "G", "T", "Unbekannt"),
+          col = rainbow(length(tab)))
+  
+  # Absolute Zahl je Auspraegung:
+  for(i in seq(1, length(tab))){
+    text(0.7 + (i - 1) * 1.2, y = tab[i] + 50, labels = tab[i], cex = 1.5)
+  }
   
   par(mfrow = c(1, 1)) # Zuruecksetzen der Einstellung
 }
 
 visualize_data()
 
-
-###################################
-table(titanic$Survived)
-table(titanic$Sex)
-table(titanic$Embarked)
-table(titanic$Anrede)
-table(titanic$Side)
-table(titanic$Deck)[-8]
-
-hist(as.numeric(titanic$Survived))
-barplot(as.numeric(table(titanic$Survived)), names.arg = c(0, 1))
