@@ -13,6 +13,33 @@ rm(titanic_data_modifiziert)
 
 ###############################################################################
 # 2a) (i) - Deskriptive Stat. (metrisch):
+# Funktion zur Berechnung und Ausgabe von deskriptiven Statistiken für metrische
+# Variablen
+
+deskriptive_Statistiken <- function(data) {
+  # Ueberpruefen, ob die Daten metrisch sind
+  if (!is.numeric(data)) {
+    stop("Die Daten müssen metrisch sein.")
+  }
+  
+  # Berechnung der deskriptiven Statistiken
+  mean_value <- mean(data)
+  median_value <- median(data)
+  min_value <- min(data)
+  max_value <- max(data)
+  sd_value <- sd(data)
+  
+  # Ausgabe der berechneten Statistiken
+  cat("Mean (Mittelwert): ", mean_value, "\n")
+  cat("Median: ", median_value, "\n")
+  cat("Minimum: ", min_value, "\n")
+  cat("Maximum: ", max_value, "\n")
+  cat("Standardabweichung: ", sd_value, "\n")
+}
+
+# Beispielaufruf der Funktion mit einem Vektor von metrischen Daten
+data <- c(10, 20, 30, 40, 50)
+deskriptive_Statistiken(data)
 
 ###############################################################################
 # 2a) (ii) - Deskriptive Stat. (kategorial):
