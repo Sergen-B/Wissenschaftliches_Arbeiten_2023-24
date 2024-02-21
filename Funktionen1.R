@@ -19,7 +19,42 @@ rm(titanic_data_modifiziert)
 
 ###############################################################################
 # 2a) (iii) - Deskrpitve bivariate Stat. (kategorial):
+calculate_bivariate_stats <- function(var1, var2) {
+  contingency_table <- table(var1, var2)
+  
+  # Chi-square test
+  chi_sq_test <- chisq.test(contingency_table)
+  
+  # Phi coefficient (for 2x2 tables)
+  if(nrow(contingency_table) == 2 && ncol(contingency_table) == 2) {
+    phi_coefficient <- sqrt(chi_sq_test$statistic / sum(contingency_table))
+  } else {
+    phi_coefficient <- NA
+  }
+  
+  # Cramér's V
+  n <- sum(contingency_table)
+  min_dim <- min(nrow(contingency_table), ncol(contingency_table))
+  cramers_v <- sqrt(chi_sq_test$statistic / (n * (min_dim - 1)))
+  
+  # Output
+  cat("Contingency Table:\n")
+  print(contingency_table)
+  cat("\n")
+  cat("Chi-square test:\n")
+  print(chi_sq_test)
+  cat("\n")
+  cat("Phi Coefficient (for 2x2 tables):\n")
+  print(phi_coefficient)
+  cat("\n")
+  cat("Cramér's V:\n")
+  print(cramers_v)
+}
 
+# Beispielaufruf
+#var1 <- c("A", "A", "B", "B", "B")
+#var2 <- c("X", "X", "Y", "Y", "Z")
+#calculate_bivariate_stats(var1, var2)
 ###############################################################################
 # 2a) (iv) - Deskriptive bivariate Stat. (metrisch - dichotom):
 
