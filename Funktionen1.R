@@ -171,6 +171,23 @@ calculate_bivariate_stats <- function(var1, var2) {
 
 ###############################################################################
 # 2a) (iv) - Deskriptive bivariate Stat. (metrisch - dichotom):
+# punkt_biseriale_korrelation Funktion
+# 
+# Berechnet die Punkt-biseriale Korrelation zwischen einer metrischen und einer 
+# dichotomen (binären) Variable. Überprüft, ob die Eingabedaten den Anforderungen
+# entsprechen (metrisch, binär, gleiche Länge) und schließt fehlende Werte aus.
+#  Die Funktion gibt eine Fehlermeldung aus, wenn die kontinuierliche Variable nicht numerisch ist,
+#     die binäre Variable nicht genau zwei eindeutige Werte hat, oder die Variablen nicht die 
+#     gleiche Anzahl an Beobachtungen aufweisen.
+#   - NA-Werte in den Daten werden ausgeschlossen.
+# Argumente:
+#   kontinuierlich: Ein numerischer Vektor für die kontinuierliche Variable.
+#   binär: Ein Vektor für die binäre Variable, der genau zwei eindeutige Werte enthalten muss.
+#   korrektur: Ein logischer Wert, der angibt, ob eine Korrektur für die Berechnung angewendet werden soll (standardmäßig TRUE).
+#
+# Rückgabe:
+#   Die berechnete Punkt-biseriale Korrelation als numerischen Wert.
+
 ist_binär <- function(variable) {
   length(unique(na.omit(variable))) == 2
 }
