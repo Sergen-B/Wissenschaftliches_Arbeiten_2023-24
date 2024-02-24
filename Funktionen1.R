@@ -16,8 +16,33 @@ source("Funktionen2.R")
 
 ###############################################################################
 # 2a) (i) - Deskriptive Stat. (metrisch):
-# Funktion zur Berechnung und Ausgabe von deskriptiven Statistiken für
-# metrische Variablen
+# deskriptive_Statistiken Funktion
+# 
+# Diese Funktion berechnet und gibt deskriptive Statistiken für metrische
+# Variablen aus.
+#
+# Argumente:
+#   data: Ein Vektor von metrischen Daten, für die deskriptive Statistiken 
+#         berechnet werden sollen.
+#
+# Rueckgabewerte:
+#   Die Funktion gibt die folgenden deskriptiven Statistiken aus:
+#     - Mittelwert (Mean)
+#     - Median
+#     - Minimum
+#     - Maximum
+#     - Standardabweichung
+#
+# Hinweise:
+#   - Die Funktion ueberprueft, ob die Daten metrisch sind, indem sie 
+#     sicherstelltl, dass sie numerisch sind. Andernfalls wird ein Fehler 
+#     ausgegeben.
+#
+# Beispiel:
+#   # Beispielaufruf der Funktion mit einem Vektor von metrischen Daten
+#   data <- c(10, 20, 30, 40, 50)
+#   deskriptive_Statistiken(data).
+#
 
 deskriptive_Statistiken <- function(data) {
   # Ueberpruefen, ob die Daten metrisch sind
