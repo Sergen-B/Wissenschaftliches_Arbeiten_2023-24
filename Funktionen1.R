@@ -71,6 +71,28 @@ deskriptive_Statistiken(data)
 
 ###############################################################################
 # 2a) (ii) - Deskriptive Stat. (kategorial):
+#  deskriptive_Statistiken_kateg Funktion
+# 
+# Berechnet deskriptive Statistiken (absolute und relative Häufigkeiten) für kategoriale 
+# Variablen in einem DataFrame. Prüft, ob der Eingabe-DataFrame gültig ist und kategoriale 
+# Variablen enthält.
+#
+# Deskriptive_Statistiken_kateg Gibt Fehlermeldung aus, wenn 'daten' kein DataFrame oder ohne kategoriale Variablen ist.
+#  NA-Werte werden als eigene Kategorie gezählt.
+#
+#
+#  Argumente:
+#  daten: DataFrame mit mindestens einer kategorialen Variable (Faktor).
+#
+#  
+# Rueckgabewerte:
+#   Ein DataFrame, der die folgenden deskriptiven Statistiken für jede Kategorie
+#   der kategorialen Variablen enthält:
+#     - Kategorie: Die Namen der einzelnen Kategorien.
+#     - Abs_ha: Die absolute Häufigkeit jeder Kategorie.
+#     - Re_ha: Die relative Häufigkeit jeder Kategorie.
+
+
 deskriptive_Statistiken_kateg = function (daten)
 {
   # Überprüfen, ob daten ein DataFrame ist 
@@ -104,9 +126,9 @@ deskriptive_Statistiken_kateg = function (daten)
   return(gesamte_statistiken)
 }
 # als beispiel können wir untere df betrachen 
-beispiel_daten <- factor(c("Apfel","Apfel","Apfel","Apfel","Apfel", "Banane", "Banane","Banane","Apfel", NA, "Banane","Orange","Orange", NA, "Orange"))
-data <- as.data.frame(beispiel_daten)
-deskriptive_Statistiken_kateg(data)
+#beispiel_daten <- factor(c("Apfel","Apfel","Apfel","Apfel","Apfel", "Banane", "Banane","Banane","Apfel", NA, "Banane","Orange","Orange", NA, "Orange"))
+#data <- as.data.frame(beispiel_daten)
+#deskriptive_Statistiken_kateg(data)
 
 ###############################################################################
 # 2a) (iii) - Deskrpitve bivariate Stat. (kategorial):
@@ -201,10 +223,10 @@ punkt_biseriale_korrelation <- function(kontinuierlich, binär, korrektur = TRUE
 }
 
 # Beispielaufruf der Funktion
-beispiel_daten <- data.frame(KontinuierlicheVariable = rnorm(100), 
-                             BinäreVariable = factor(sample(c("Kategorie1", "Kategorie2"), 100, replace = TRUE)))
-korrelation <- punkt_biseriale_korrelation(beispiel_daten$KontinuierlicheVariable, beispiel_daten$BinäreVariable)
-print(korrelation)
+#beispiel_daten <- data.frame(KontinuierlicheVariable = rnorm(100), 
+ #                            BinäreVariable = factor(sample(c("Kategorie1", "Kategorie2"), 100, replace = TRUE)))
+#korrelation <- punkt_biseriale_korrelation(beispiel_daten$KontinuierlicheVariable, beispiel_daten$BinäreVariable)
+#print(korrelation)
 
 ###############################################################################
 # 2a) (v) - Visualisierung (kategorial):
