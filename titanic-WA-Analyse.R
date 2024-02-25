@@ -14,8 +14,10 @@ deskriptive_Statistiken(titanic$Fare)
 # Ticketpreise bezahlt haben. Diese Interpretation stuetzt, dass der vorliegende
 # Median ebenfalls sehr nah am Minimum bzw. sehr weit entfernt vom Maximum ist.
 
+
 # Analyse des Verhaeltnisses Ticketpreise - Geschlechter:
-punkt_biseriale_korrelation(titanic$Fare, titanic$Sex)
+res_fare_sex = punkt_biseriale_korrelation_und_stats(titanic, "Fare", "Sex")
+print(res_fare_sex)
 
 # Die punktbiseriale Korrelation ergibt einen recht kleinen Wert bzw. einen Wert,
 # der verhaeltnismaeßig nahe bei 0 liegt, was bedeutet, dass zwischen den Werten
@@ -28,14 +30,14 @@ punkt_biseriale_korrelation(titanic$Fare, titanic$Sex)
 
 # Analyse des Verhaeltnisses Alter - Ueberlebende:
 # Deskriptive bivariate Statistiken (metrisch - dichotom):
-
 print("Deskriptive bivariate Statistiken (metrisch - dichotom):")
 result <- punkt_biseriale_korrelation_und_stats(titanic, "Age", "Survived")
 print(result)
+
 # Die Analyse zeigt eine Korrelation zwischen dem Alter der Passagiere und 
-# ihrem ueberlebensstatus. Aeltere Passagiere hatten tendenziell niedrigere 
-# Überlebenschancen als juengere. Dies legt daran, dass das Alter eine wichtige 
-# rolle spielte, moeglicherweise wurden juengere Passagiere bevorzugt oder waren
+# ihrem Ueberlebensstatus. Aeltere Passagiere hatten tendenziell niedrigere 
+# Ueberlebenschancen als juengere. Dies legt daran, dass das Alter eine wichtige 
+# Rolle spielte, moeglicherweise wurden juengere Passagiere bevorzugt oder waren
 # physisch besser in der Lage, den Herausforderungen der Katastrophe zu 
 # begegnen.
 
