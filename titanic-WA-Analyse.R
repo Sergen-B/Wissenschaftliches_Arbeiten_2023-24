@@ -54,7 +54,8 @@ deskriptive_Statistiken_kateg(data.frame(titanic$Survived))
 # Analyse vom Ueberleben, Geschlecht und Zustiegshafen:
 visualize_data(list("Ueberleben" = titanic$Survived, "Geschlecht" = titanic$Sex,
                     "Zustiegshafen" = titanic$Embarked))
-
+# Liefert einen ersten Blick in die Vertder kategoriellen Variablen im Datensatz
+# Es können weiter Analysen und statistische Tests durhcgeführt werden, um Zusammenhänge zwischen den Variablen und dem Ueberleben der Passagiere zu untersuchen
 
 
 
