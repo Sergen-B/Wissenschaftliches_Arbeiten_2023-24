@@ -130,7 +130,14 @@ deskriptive_Statistiken_kateg = function(daten)
 ###############################################################################
 # 2a) (iii) - Deskrpitve bivariate Stat. (kategorial):
 
-# ...
+# Diese Fnktion berechnet deskriptive bivariate Statistiken für den Zusammenhang zwischen zwei kategorialen Variablen und diese dann ausgibt.
+# Parameter:
+# var1: Ein Vektor mit kategorialen Variablen.
+# var2: Ein weiterer Vektor mit kategorialen Variablen, der mit var1 in Beziehung steht.
+
+# Diese Funktion bietet eine schnelle Möglichkeit, wichtige deskriptive Statistiken für den Zusammenhang zwischen zwei kategorialen Variablen zu berechnen und zu analysieren.
+
+
 
 calculate_bivariate_stats <- function(var1, var2) {
   contingency_table <- table(var1, var2)
