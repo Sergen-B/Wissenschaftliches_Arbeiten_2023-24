@@ -47,9 +47,35 @@ print(result)
 # Analyse der überlebenden Passagiere
 deskriptive_Statistiken_kateg(data.frame(titanic$Survived))
 # Der Großteil der Passagiere hat nicht überlebt 
+# Deskriptive Statistiken fuer kategorielle Variablen wie Geschlecht, Passagierklasse und Einsteigehafen zeigen die Haeufigkeit jeder Kategorie sowie deren relative Verteilung im Datensatz
+# Informationen ermoeglichen es Muster und Trends im Bezug auf die Variablen zu indentifizieren, die vielleicht mit dem Ueberlebensstatus der Passagiere in Verbindung stehen
+
+
+# Analyse vom Ueberleben, Geschlecht und Zustiegshafen:
+visualize_data(list("Ueberleben" = titanic$Survived, "Geschlecht" = titanic$Sex,
+                    "Zustiegshafen" = titanic$Embarked))
 
 
 
 
+
+# Analyse vom Verhaeltnis Ueberleben - Geschlecht:
 calculate_bivariate_stats(titanic$Sex, titanic$Survived)
+
+# An der Kontingenztafel sieht man, dass viel mehr maennliche Passagiere
+# gestorben sind als weibliche. Andererseits gibt es aber auch viel mehr
+# maennliche Passagiere als weibliche, weshalb man das Verhaeltnis betrachten
+# sollte. Aber auch dann bleibt die Beobachtung richtig, da ca. 81 % der
+# maennlichen Passagiere gestorben sind, waehrend es nur ca. 26 % tote weibliche
+# Passagiere sind. Der p-Wert beider Variablen beim chisq-Test ist sehr klein,
+# was hier bedeuten kann, dass es wahrscheinlich ist, dass die Variablen
+# voneinander abhaengen, was der vorangegangenen Beobachtung gewissermaßen
+# entsprechen wuerde. Da hier eine 2x2-Kontingenztafel vorliegt, entspricht der
+# der Phi-Koeffizient Cramers V und beide sagen das gleiche aus. Da beide Werte
+# hier verhaeltnismaeßig groß sind, laesst sich auch mithilfe dieser beiden
+# Werte aussagen, dass eine gewisse Abhaengigkeit besteht, die auch nicht
+# wirklich klein ist. Somit wird hier auf vier verschiedenen Wegen bzw. mit vier
+# Statistiken gezeigt, dass das Ueberleben abhaengig vom Geschlecht ist, da
+# maennliche Passagiere verhaeltnismaeßig oefter gestorben sind als weibliche
+# Passagiere.
 
