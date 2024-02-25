@@ -188,7 +188,7 @@ calculate_bivariate_stats <- function(var1, var2) {
 # Rückgabe:
 #   Die berechnete Punkt-biseriale Korrelation als numerischen Wert.
 
-ist_binär <- function(variable) {
+ist_binär <- function(variable) { #Überprüft, ob eine gegebene Variable binär ist
   length(unique(na.omit(variable))) == 2
 }
 
