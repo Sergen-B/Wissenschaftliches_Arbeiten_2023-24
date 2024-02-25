@@ -97,3 +97,22 @@ calculate_bivariate_stats(titanic$Sex, titanic$Survived)
 # maennliche Passagiere verhaeltnismaeßig oefter gestorben sind als weibliche
 # Passagiere.
 
+###################################################################################
+# Aufgabe 5)
+
+# Analyse vom Verhaeltnis Ueberleben - Side :
+calculate_bivariate_stats(titanic$Side, titanic$Survived)
+
+# In der Kontingenztafel sehen wir, dass 38,59% (44 von 114) der Passagiere auf der Backbordseite nicht überlebt haben,
+# während es auf der Steuerbordseite 26% (24 von 90)sind. Das scheint auf den ersten Blick ein Unterschied 
+# zu sein. Allerdings zeigen der Phi-Koeffizient und Cramér's V, beide bei 0.115, dass dieser Zusammenhang eher
+# schwach ist. Diese Werte sind ziemlich niedrig und deuten darauf hin, dass die Seite des Schiffes (Backbord vs.
+# Steuerbord) möglicherweise keinen starken Einfluss auf die Überlebenschancen hatte.
+
+# Ein wichtiger Punkt, den wir hier beachten sollten, ist die große Anzahl an fehlenden Werten (NA) in unseren 
+# Daten – insgesamt 687 von 891 Beobachtungen. Dies könnte die Ergebnisse beeinflussen und die Beziehung zwischen
+# der Schiffsseite und den Überlebenschancen verzerren. Es ist möglich, dass diese fehlenden Daten wichtige
+# Informationen enthalten, die uns helfen könnten, ein klareres Bild zu erhalten. Daher sollten wir bei der
+# Interpretation unserer Ergebnisse vorsichtig sein und diese Limitation im Hinterkopf behalten.
+
+
