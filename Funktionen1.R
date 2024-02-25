@@ -136,8 +136,10 @@ deskriptive_Statistiken_kateg = function(daten)
 # var2: Ein weiterer Vektor mit kategorialen Variablen, der mit var1 in Beziehung steht.
 
 # Diese Funktion bietet eine schnelle Möglichkeit, wichtige deskriptive Statistiken für den Zusammenhang zwischen zwei kategorialen Variablen zu berechnen und zu analysieren.
-
-
+# Rückgabewerte: - Kontingenztafel: Eine Kreuztabelle der beiden kategorialen Variablen.
+#                - Chi-Quadrat-Test: Die Ergebnisse des Chi-Quadrat-Tests für die Assoziation der beiden Variablen.
+#                - Phi-Koeffizient (nur für 2x2-Tabellen): Ein Maß für den Zusammenhang zwischen den beiden Variablen.
+#                - Cramér's V: Ein Maß für den Zusammenhang zwischen den beiden Variablen, das für Tabellen jeglicher Größe geeignet ist.
 
 calculate_bivariate_stats <- function(var1, var2) {
   contingency_table <- table(var1, var2)
