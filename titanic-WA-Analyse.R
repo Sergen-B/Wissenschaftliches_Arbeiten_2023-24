@@ -31,11 +31,11 @@ punkt_biseriale_korrelation(titanic$Fare, titanic$Sex)
 
 print("Deskriptive bivariate Statistiken (metrisch - dichotom):")
 result <- punkt_biseriale_korrelation_und_stats(titanic, "Age", "Survived")
-
+print(result)
 # Die Analyse zeigt eine Korrelation zwischen dem Alter der Passagiere und 
 # ihrem ueberlebensstatus. Aeltere Passagiere hatten tendenziell niedrigere 
 # Überlebenschancen als juengere. Dies legt daran, dass das Alter eine wichtige 
 # rolle spielte, moeglicherweise wurden juengere Passagiere bevorzugt oder waren
 # physisch besser in der Lage, den Herausforderungen der Katastrophe zu 
 # begegnen.
-print(result)
+
