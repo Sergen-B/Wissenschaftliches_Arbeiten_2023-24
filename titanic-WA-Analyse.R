@@ -28,9 +28,6 @@ print(res_fare_sex)
 # auch andersherum.
 
 
-
-
-
 # Analyse des Verhaeltnisses Alter - Ueberlebende:
 # Deskriptive bivariate Statistiken (metrisch - dichotom):
 print("Deskriptive bivariate Statistiken (metrisch - dichotom):")
@@ -44,21 +41,29 @@ print(result)
 # physisch besser in der Lage, den Herausforderungen der Katastrophe zu 
 # begegnen.
 
+
 # Analyse der überlebenden Passagiere
 deskriptive_Statistiken_kateg(data.frame(titanic$Survived))
-# Der Großteil der Passagiere hat nicht überlebt 
-# Deskriptive Statistiken fuer kategorielle Variablen wie Geschlecht, Passagierklasse und Einsteigehafen zeigen die Haeufigkeit jeder Kategorie sowie deren relative Verteilung im Datensatz
-# Informationen ermoeglichen es Muster und Trends im Bezug auf die Variablen zu indentifizieren, die vielleicht mit dem Ueberlebensstatus der Passagiere in Verbindung stehen
+# Deskriptive Statistiken fuer kategorielle Variablen wie Geschlecht,
+# Passagierklasse und Einsteigehafen zeigen die Haeufigkeit jeder Kategorie
+# sowie deren relative Verteilung im Datensatz Informationen ermoeglichen es
+# Muster und Trends im Bezug auf die Variablen zu indentifizieren, die
+# vielleicht mit dem Ueberlebensstatus der Passagiere in Verbindung stehen.
+# Hier wird ersichtlich, dass der Großteil der Passagiere nicht ueberlebt.
+# Zusaetzlich gibt es scheinbar nur zwei verschiedene Auspraegungen von der
+# Variable Ueberlebensstatus, naemlich "ueberlebt" und "tot".
 
 
 # Analyse vom Ueberleben, Geschlecht und Zustiegshafen:
 visualize_data(list("Ueberleben" = titanic$Survived, "Geschlecht" = titanic$Sex,
                     "Zustiegshafen" = titanic$Embarked))
 # Liefert einen ersten Blick in die Vertder kategoriellen Variablen im Datensatz
-# Es können weiter Analysen und statistische Tests durhcgeführt werden, um Zusammenhänge zwischen den Variablen und dem Ueberleben der Passagiere zu untersuchen
-# Die Balkendiagramme zeigen, dass die Anzahl der Toten überwiegt, genau so wie die Anzahl der mänlichen Passagiere
-# Zudem wird klar deutlich, dass die meisten Passagiere in Southampton einsteigen
-
+# Die Balkendiagramme zeigen, dass die Anzahl der Toten úeberwiegt, genauso wie
+# die Anzahl der maennlichen Passagiere. Zudem wird klar deutlich, dass die
+# meisten Passagiere in Southampton eingestiegen sind.
+# Es können weiter Analysen und statistische Tests durchgeführt werden, um
+# Zusammenhänge zwischen den Variablen und dem Ueberleben der Passagiere zu
+# untersuchen.
 
 
 # Analyse vom Verhaeltnis Ueberleben - Geschlecht:
