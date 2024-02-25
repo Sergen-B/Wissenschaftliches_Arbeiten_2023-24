@@ -171,80 +171,65 @@ calculate_bivariate_stats <- function(var1, var2) {
 
 ###############################################################################
 # 2a) (iv) - Deskriptive bivariate Stat. (metrisch - dichotom):
-# punkt_biseriale_korrelation Funktion
-# 
-# Berechnet die Punkt-biseriale Korrelation zwischen einer metrischen und einer 
-# dichotomen (binären) Variable. Überprüft, ob die Eingabedaten den Anforderungen
-# entsprechen (metrisch, binär, gleiche Länge) und schließt fehlende Werte aus.
-#  Die Funktion gibt eine Fehlermeldung aus, wenn die kontinuierliche Variable nicht numerisch ist,
-#     die binäre Variable nicht genau zwei eindeutige Werte hat, oder die Variablen nicht die 
-#     gleiche Anzahl an Beobachtungen aufweisen.
-#   - NA-Werte in den Daten werden ausgeschlossen.
+# punkt_biseriale_korrelation_und_stats Funktion
+#
+# Diese Funktion berechnet sowohl die Punkt-biseriale Korrelation zwischen einer metrischen 
+# und einer dichotomen (binären) Variable als auch deskriptive Statistiken (Mittelwert, Median,
+# Varianz, Standardabweichung) für die metrische Variable, aufgeteilt nach den Kategorien der
+# dichotomen Variable. Die Funktion überprüft die Eingabedaten auf Typ (metrisch, binär) und
+# Länge und schließt fehlende Werte aus. Fehlermeldungen werden ausgegeben, wenn die kontinuierliche
+# Variable nicht numerisch ist, die binäre Variable nicht genau zwei eindeutige Werte hat, oder
+# die Variablen nicht die gleiche Anzahl an Beobachtungen aufweisen.
+# NA-Werte in den Daten werden ausgeschlossen.
+#
 # Argumente:
-#   kontinuierlich: Ein numerischer Vektor für die kontinuierliche Variable.
-#   binär: Ein Vektor für die binäre Variable, der genau zwei eindeutige Werte enthalten muss.
-#   korrektur: Ein logischer Wert, der angibt, ob eine Korrektur für die Berechnung angewendet werden soll (standardmäßig TRUE).
+#   data: Ein Datenrahmen, der die zu analysierenden Variablen enthält.
+#   kontinuierlich: Der Name der numerischen (kontinuierlichen) Variable als String.
+#   binär: Der Name der binären Variable als String, der genau zwei eindeutige Werte enthalten muss.
 #
 # Rückgabe:
-#   Die berechnete Punkt-biseriale Korrelation als numerischen Wert.
+#   Eine Liste mit zwei Elementen:
+#     1. Korrelation: Die berechnete Punkt-biseriale Korrelation als numerischer Wert.
+#     2. Statistiken: Ein Datenrahmen mit deskriptiven Statistiken für die kontinuierliche Variable,
+#        aufgeteilt nach den Kategorien der dichotomen Variable.
 
-ist_binär <- function(variable) { #Überprüft, ob eine gegebene Variable binär ist
+library(dplyr)
+
+ist_binär <- function(variable) {
   length(unique(na.omit(variable))) == 2
 }
 
-# Funktion, um zu prüfen, ob zwei Datensätze die gleiche Anzahl an Beobachtungen haben
-gleiche_länge <- function(datensatz1, datensatz2) {
-  length(datensatz1) == length(datensatz2)
-}
-
-# Funktion zur Berechnung der Punkt-biserialen Korrelation
-punkt_biseriale_korrelation <- function(kontinuierlich, binär, korrektur = TRUE) {
+punkt_biseriale_korrelation_und_stats <- function(data, kontinuierlich, binär) {
   # Prüfungen der Eingabedaten
-  if (!is.numeric(kontinuierlich)) {
+  if (!is.numeric(data[[kontinuierlich]])) {
     stop("Die kontinuierliche Variable sollte numerisch sein.")
   }
-  if (!ist_binär(binär)) {
+  if (!ist_binär(data[[binär]])) {
     stop("Die binäre Variable sollte genau zwei eindeutige Werte haben.")
   }
-  if (!gleiche_länge(kontinuierlich, binär)) {
+  if (nrow(na.omit(data[, c(kontinuierlich, binär)])) != nrow(data)) {
     stop("Die Variablen sollten die gleiche Anzahl an Beobachtungen haben.")
   }
   
-  # Fehlende Werte ausschließen
-  vollständig <- complete.cases(kontinuierlich, binär)
-  kontinuierlich <- kontinuierlich[vollständig]
-  binär <- binär[vollständig]
-  
-  # Umwandlung der binären Variable in numerisch für die Berechnung
-  binär_numerisch <- as.numeric(as.factor(binär)) - 1
-  
-  # verdecken der binären Variablen
-  verst0 <- binär_numerisch == 0
-  verst1 <- binär_numerisch == 1
-  
-  # Anzahl der Beobachtungen für jede Gruppe berechnen
-  anzahl0 <- sum(verst0)
-  anzahl1 <- sum(verst1)
-  gesamtanzahl <- anzahl0 + anzahl1
-  
-  # Mittelwerte und Standardabweichungen berechnen
-  mittelwert1 <- mean(kontinuierlich[verst0], na.rm = TRUE)
-  mittelwert2 <- mean(kontinuierlich[verst1], na.rm = TRUE)
-  gesamt_mittelwert <- mean(kontinuierlich)
-  gesamt_sd <- sd(kontinuierlich)
+  # Deskriptive Statistiken berechnen
+  stats <- data %>%
+    group_by(!!sym(binär)) %>%
+    summarize(
+      Mean = mean(!!sym(kontinuierlich), na.rm = TRUE),
+      Median = median(!!sym(kontinuierlich), na.rm = TRUE),
+      Variance = var(!!sym(kontinuierlich), na.rm = TRUE),
+      SD = sd(!!sym(kontinuierlich), na.rm = TRUE)
+    )
   
   # Punkt-biseriale Korrelation berechnen
-  punkt_korr <- (mittelwert2 - mittelwert1) / gesamt_sd * sqrt((anzahl0 * anzahl1) / gesamtanzahl^2)
+  korrelation <- cor(data[[kontinuierlich]], as.numeric(as.factor(data[[binär]])), use = "complete.obs")
   
-  return(punkt_korr)
+  return(list(Korrelation = korrelation, Statistiken = stats))
 }
 
-# Beispielaufruf der Funktion
-#beispiel_daten <- data.frame(KontinuierlicheVariable = rnorm(100), 
- #                            BinäreVariable = factor(sample(c("Kategorie1", "Kategorie2"), 100, replace = TRUE)))
-#korrelation <- punkt_biseriale_korrelation(beispiel_daten$KontinuierlicheVariable, beispiel_daten$BinäreVariable)
-#print(korrelation)
-
+#Beispielaufruf der Funktion
+# result <- punkt_biseriale_korrelation_und_stats(titanic, "Age", "Survived")
+#print(result)
 ###############################################################################
 # 2a) (v) - Visualisierung (kategorial):
 
