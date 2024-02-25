@@ -97,22 +97,44 @@ calculate_bivariate_stats(titanic$Sex, titanic$Survived)
 # maennliche Passagiere verhaeltnismaeßig oefter gestorben sind als weibliche
 # Passagiere.
 
-###################################################################################
+################################################################################
 # Aufgabe 5)
 
 # Analyse vom Verhaeltnis Ueberleben - Side :
 calculate_bivariate_stats(titanic$Side, titanic$Survived)
 
-# In der Kontingenztafel sehen wir, dass 38,59% (44 von 114) der Passagiere auf der Backbordseite nicht überlebt haben,
-# während es auf der Steuerbordseite 26% (24 von 90)sind. Das scheint auf den ersten Blick ein Unterschied 
-# zu sein. Allerdings zeigen der Phi-Koeffizient und Cramér's V, beide bei 0.115, dass dieser Zusammenhang eher
-# schwach ist. Diese Werte sind ziemlich niedrig und deuten darauf hin, dass die Seite des Schiffes (Backbord vs.
-# Steuerbord) möglicherweise keinen starken Einfluss auf die Überlebenschancen hatte.
+# In der Kontingenztafel sehen wir, dass 38,59% (44 von 114) der Passagiere auf
+# der Backbordseite nicht ueberlebt haben, waehrend es auf der Steuerbordseite 26%
+# (24 von 90) sind. Das scheint auf den ersten Blick ein Unterschied zu sein.
+# Allerdings zeigen der Phi-Koeffizient und Cramér's V, beide bei 0.115, dass
+# dieser Zusammenhang eher schwach ist. Diese Werte sind ziemlich niedrig und
+# deuten darauf hin, dass die Seite des Schiffes (Backbord vs. Steuerbord)
+# moeglicherweise keinen starken Einfluss auf die Ueberlebenschancen hatte.
 
-# Ein wichtiger Punkt, den wir hier beachten sollten, ist die große Anzahl an fehlenden Werten (NA) in unseren 
-# Daten – insgesamt 687 von 891 Beobachtungen. Dies könnte die Ergebnisse beeinflussen und die Beziehung zwischen
-# der Schiffsseite und den Überlebenschancen verzerren. Es ist möglich, dass diese fehlenden Daten wichtige
-# Informationen enthalten, die uns helfen könnten, ein klareres Bild zu erhalten. Daher sollten wir bei der
-# Interpretation unserer Ergebnisse vorsichtig sein und diese Limitation im Hinterkopf behalten.
+# Ein wichtiger Punkt, den wir hier beachten sollten, ist die große Anzahl an
+# fehlenden Werten (NA) in unseren Daten – insgesamt 687 von 891 Beobachtungen.
+# Dies koennte die Ergebnisse beeinflussen und die Beziehung zwischen der
+# Schiffsseite und den Ueberlebenschancen verzerren. Es ist moeglich, dass diese
+# fehlenden Daten wichtige Informationen enthalten, die uns helfen koennten, ein
+# klareres Bild zu erhalten. Daher sollten wir bei der Interpretation unserer
+# Ergebnisse vorsichtig sein und diese Limitation im Hinterkopf behalten.
 
 
+# Analyse des Verhaeltnisses Ueberleben - Ticketpreis:
+res_fare_survived = punkt_biseriale_korrelation_und_stats(titanic, "Fare", "Survived")
+print(res_fare_survived)
+
+# Der Korrelationskoeffient bzw. die punktbiseriale Korrelation zwischen den
+# Ticketpreisen und dem Ueberleben der Passagiere betraegt mit ca. 0.26 einen
+# vergleichsweise recht hohen positiven Wert, was gewissermaßen auch mithilfe
+# der anhaengenden Tabelle und der Daten beobachtet werden kann. Im vorliegenden
+# Kontext bedeutet dieser Zusammenhang, dass mehr Passagiere bzw. eher die
+# Passagiere ueberlebt haben, welche einen hoeheren Ticketpreis bezahlt haben.
+# Dies unterstuetzt die allgemeine These, dass reichere bzw. mehr zahlende
+# Passagiere, hier speziell bei Rettungen, in irgendeiner Form bevorzugt werden,
+# wenn die Rettung der Passagiere auf der Titanic angebracht wird. Außerdem
+# gewaehrt uns dies einen gewissen Einblick in die gesellschaftlichen bzw.
+# sozialen Sichtweisen an Bord der Titanic und womoeglich auch den allgemeinen
+# Sichtweisen zur damaligen Zeit. Wie genau die zahlenden Passagiere eher
+# bevorzugt wurden, laesst sich anhand dieser Daten nicht sagen, dafuer muss eine
+# Analyse mit anderen Daten und Variablen erfolgen.
