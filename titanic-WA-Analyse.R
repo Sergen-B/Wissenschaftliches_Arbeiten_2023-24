@@ -28,6 +28,9 @@ print(res_fare_sex)
 # auch andersherum.
 
 
+
+
+
 # Analyse des Verhaeltnisses Alter - Ueberlebende:
 # Deskriptive bivariate Statistiken (metrisch - dichotom):
 print("Deskriptive bivariate Statistiken (metrisch - dichotom):")
@@ -40,4 +43,13 @@ print(result)
 # Rolle spielte, moeglicherweise wurden juengere Passagiere bevorzugt oder waren
 # physisch besser in der Lage, den Herausforderungen der Katastrophe zu 
 # begegnen.
+
+# Analyse der überlebenden Passagiere
+deskriptive_Statistiken_kateg(data.frame(titanic$Survived))
+# Der Großteil der Passagiere hat nicht überlebt 
+
+
+
+
+calculate_bivariate_stats(titanic$Sex, titanic$Survived)
 
