@@ -1,3 +1,5 @@
+
+# Dieser Teil wurde von Eya ghroubi zusammen mit Ahmed Ghroubi gemacht  .
 # Datensatz einlesen
 titanic1 <- read.csv("titanic.csv")
 
