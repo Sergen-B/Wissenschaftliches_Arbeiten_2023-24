@@ -25,12 +25,17 @@ print(res_fare_sex)
 # interpretiert werden, dass der generelle Ticketpreis nicht eindeutig vom
 # Geschlecht eines Passagieres abhaengt, was bedeutet, dass beispielsweise 
 # maennliche Passagiere nicht mehr bezahlt haben als weibliche Passagiere oder
-# auch andersherum.
+# auch andersherum. Dies ist mit der Beruecksichtigung des Kontextes auch
+# logisch, da einige Familien an Bord waren und damit auch einige Kinder zu den
+# Passagieren zaehlten, denen es eher nicht moeglich ist, ein Ticket zu erwerben.
+# Zudem ist die sehr geringe Korrelation insofern auch interessant, da dies
+# impliziert, dass zur damaligen Zeit nicht großartig zwischen dem maennlichen
+# und weiblichen Geschlecht unterschieden wurde, wenn es um die finanziellen
+# Preisaspekt der Tickets ging, was einen kleinen Einblick in die damaligen
+# sozialen bzw. gesellschaftlichen Sichtweisen ermoeglicht.
 
 
 # Analyse des Verhaeltnisses Alter - Ueberlebende:
-# Deskriptive bivariate Statistiken (metrisch - dichotom):
-print("Deskriptive bivariate Statistiken (metrisch - dichotom):")
 result <- punkt_biseriale_korrelation_und_stats(titanic, "Age", "Survived")
 print(result)
 
@@ -42,8 +47,9 @@ print(result)
 # begegnen.
 
 
-# Analyse der überlebenden Passagiere
+# Analyse der ueberlebenden Passagiere:
 deskriptive_Statistiken_kateg(data.frame(titanic$Survived))
+
 # Deskriptive Statistiken fuer kategorielle Variablen wie Geschlecht,
 # Passagierklasse und Einsteigehafen zeigen die Haeufigkeit jeder Kategorie
 # sowie deren relative Verteilung im Datensatz Informationen ermoeglichen es
@@ -57,6 +63,7 @@ deskriptive_Statistiken_kateg(data.frame(titanic$Survived))
 # Analyse vom Ueberleben, Geschlecht und Zustiegshafen:
 visualize_data(list("Ueberleben" = titanic$Survived, "Geschlecht" = titanic$Sex,
                     "Zustiegshafen" = titanic$Embarked))
+
 # Liefert einen ersten Blick in die Vertder kategoriellen Variablen im Datensatz
 # Die Balkendiagramme zeigen, dass die Anzahl der Toten úeberwiegt, genauso wie
 # die Anzahl der maennlichen Passagiere. Zudem wird klar deutlich, dass die
