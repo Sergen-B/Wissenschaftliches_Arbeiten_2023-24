@@ -39,16 +39,16 @@ print(res_fare_sex)
 result <- punkt_biseriale_korrelation_und_stats(titanic, "Age", "Survived")
 print(result)
 
-# Die Analyse der Daten legt nahe, dass es eine gewisse korrelation zwischen 
-# dem Alter der passagiere und ihrem ueberlebensstatus gibt. Obwohl aeltere 
+# Die Analyse der Daten legt nahe, dass es eine gewisse Korrelation zwischen 
+# dem Alter der Passagiere und ihrem Ueberlebensstatus gibt. Obwohl aeltere 
 # Passagiere tendenziell niedrigere Ueberlebenschancen hatten als juengere, ist 
 # die Korrelation relativ schwach. Dies deutet darauf hin, dass das Alter allein
-# moeglicherweise nicht ausreicht, um die ueberlebenschancen vollstaendig zu 
+# moeglicherweise nicht ausreicht, um die Ueberlebenschancen vollstaendig zu
 # erklaeren. Andere Faktoren wie Geschlecht, soziooekonomischer Status oder die 
-# positionierung auf dem Schiff koennten ebenfalls eine Rolle gespielt haben.
-# Daher ist es möglich, dass die Daten keine eindeutige Unterstützung dafür
-# bieten, dass das Alter einen signifikanten Einfluss auf die 
-# Ueberlebenschancen hatte.
+# Positionierung auf dem Schiff koennten ebenfalls eine Rolle gespielt haben.
+# Daher ist es moeglich, dass die Daten keine eindeutige Unterstuetzung dafuer
+# bieten, dass das Alter einen signifikanten Einfluss auf die Ueberlebenschancen
+# hatte.
 
 
 # Analyse der ueberlebenden Passagiere:
