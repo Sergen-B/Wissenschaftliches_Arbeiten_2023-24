@@ -16,6 +16,7 @@ source("Funktionen2.R")
 
 ###############################################################################
 # 2a) (i) - Deskriptive Stat. (metrisch):
+
 # deskriptive_Statistiken Funktion
 # 
 # Diese Funktion berechnet und gibt deskriptive Statistiken für metrische
@@ -39,10 +40,9 @@ source("Funktionen2.R")
 #     ausgegeben.
 #
 # Beispiel:
-#   # Beispielaufruf der Funktion mit einem Vektor von metrischen Daten
+#   Beispielaufruf der Funktion mit einem Vektor von metrischen Daten:
 #   data <- c(10, 20, 30, 40, 50)
-#   deskriptive_Statistiken(data).
-#
+#   deskriptive_Statistiken(data)
 
 deskriptive_Statistiken <- function(data) {
   # Ueberpruefen, ob die Daten metrisch sind
@@ -65,12 +65,9 @@ deskriptive_Statistiken <- function(data) {
   cat("Standardabweichung: ", sd_value, "\n")
 }
 
-# Beispielaufruf der Funktion mit einem Vektor von metrischen Daten
-data <- c(10, 20, 30, 40, 50)
-deskriptive_Statistiken(data)
-
 ###############################################################################
 # 2a) (ii) - Deskriptive Stat. (kategorial):
+
 #  deskriptive_Statistiken_kateg Funktion
 # 
 # Berechnet deskriptive Statistiken (absolute und relative Häufigkeiten) für kategoriale 
@@ -92,8 +89,7 @@ deskriptive_Statistiken(data)
 #     - Abs_ha: Die absolute Häufigkeit jeder Kategorie.
 #     - Re_ha: Die relative Häufigkeit jeder Kategorie.
 
-
-deskriptive_Statistiken_kateg = function (daten)
+deskriptive_Statistiken_kateg = function(daten)
 {
   # Überprüfen, ob daten ein DataFrame ist 
   if (!is.data.frame(daten))
@@ -125,13 +121,17 @@ deskriptive_Statistiken_kateg = function (daten)
   
   return(gesamte_statistiken)
 }
-# als beispiel können wir untere df betrachen 
-#beispiel_daten <- factor(c("Apfel","Apfel","Apfel","Apfel","Apfel", "Banane", "Banane","Banane","Apfel", NA, "Banane","Orange","Orange", NA, "Orange"))
-#data <- as.data.frame(beispiel_daten)
-#deskriptive_Statistiken_kateg(data)
+
+# Als Beispiel können wir untere df betrachen: 
+# beispiel_daten <- factor(c("Apfel","Apfel","Apfel","Apfel","Apfel", "Banane", "Banane","Banane","Apfel", NA, "Banane","Orange","Orange", NA, "Orange"))
+# data <- as.data.frame(beispiel_daten)
+# deskriptive_Statistiken_kateg(data)
 
 ###############################################################################
 # 2a) (iii) - Deskrpitve bivariate Stat. (kategorial):
+
+# ...
+
 calculate_bivariate_stats <- function(var1, var2) {
   contingency_table <- table(var1, var2)
   
@@ -164,7 +164,7 @@ calculate_bivariate_stats <- function(var1, var2) {
   print(cramers_v)
 }
 
-# Beispielaufruf
+# Beispielaufruf:
 # var1 <- c("A", "A", "B", "B", "B")
 # var2 <- c("X", "X", "Y", "Y", "Z")
 # calculate_bivariate_stats(var1, var2)
@@ -227,9 +227,10 @@ punkt_biseriale_korrelation_und_stats <- function(data, kontinuierlich, binär) 
   return(list(Korrelation = korrelation, Statistiken = stats))
 }
 
-#Beispielaufruf der Funktion
+# Beispielaufruf der Funktion:
 # result <- punkt_biseriale_korrelation_und_stats(titanic, "Age", "Survived")
-#print(result)
+# print(result)
+
 ###############################################################################
 # 2a) (v) - Visualisierung (kategorial):
 
@@ -270,11 +271,10 @@ visualize_data = function(dataList){
   par(mfrow = c(1, 1)) # Zuruecksetzen der Einstellung
 }
 
-# Beispielaufruf der Funktion mit vier ausgewaehlten kategoriellen Variabelen
+# Beispielaufruf der Funktion mit vier ausgewaehlten kategoriellen Variablen
 # des Datensatzes aus "titantic-WA.R":
-argList = list("Ueberleben der Passagiere" = titanic$Survived,
-               "Geschlecht der Passagiere" = titanic$Sex,
-               "Zustiegshafen" = titanic$Embarked,
-               "Deck der Passagiere" = titanic$Deck)
-
-visualize_data(argList)
+# argList = list("Ueberleben der Passagiere" = titanic$Survived,
+#                "Geschlecht der Passagiere" = titanic$Sex,
+#                "Zustiegshafen" = titanic$Embarked,
+#                "Deck der Passagiere" = titanic$Deck)
+# visualize_data(argList)
