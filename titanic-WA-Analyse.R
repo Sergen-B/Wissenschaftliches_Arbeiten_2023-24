@@ -56,7 +56,8 @@ visualize_data(list("Ueberleben" = titanic$Survived, "Geschlecht" = titanic$Sex,
                     "Zustiegshafen" = titanic$Embarked))
 # Liefert einen ersten Blick in die Vertder kategoriellen Variablen im Datensatz
 # Es können weiter Analysen und statistische Tests durhcgeführt werden, um Zusammenhänge zwischen den Variablen und dem Ueberleben der Passagiere zu untersuchen
-
+# Die Balkendiagramme zeigen, dass die Anzahl der Toten überwiegt, genau so wie die Anzahl der mänlichen Passagiere
+# Zudem wird klar deutlich, dass die meisten Passagiere in Southampton einsteigen
 
 
 
